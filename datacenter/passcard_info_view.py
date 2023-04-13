@@ -5,6 +5,9 @@ import django
 from django.shortcuts import get_object_or_404
 
 
+SECONDS_IN_HOUR = 3600
+
+
 def get_duration(visit):
     entered_time = visit.entered_at
     if visit.leaved_at:
@@ -22,7 +25,7 @@ def format_duration(duration):
 
 
 def is_strange(visit):
-    if get_duration((visit)).total_seconds() > 3600:
+    if get_duration((visit)).total_seconds() > SECONDS_IN_HOUR:
         return True
     return False
 

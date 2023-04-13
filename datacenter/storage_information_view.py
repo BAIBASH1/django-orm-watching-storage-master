@@ -1,6 +1,7 @@
 from datacenter.models import Visit
 from django.shortcuts import render
 import django
+import passcard_info_view
 
 
 def get_duration(visit):
@@ -19,7 +20,8 @@ def storage_information_view(request):
         element = {
             'who_entered': visiter.passcard.owner_name,
             'entered_at': visiter.entered_at,
-            'duration': format_duration(get_duration(visiter.entered_at))
+            'duration': format_duration(get_duration(visiter.entered_at)),
+            'is_strange': passcard_info_view.is_strange(visiter)
         }
         non_closed_visits.append(element)
 
